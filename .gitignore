@@ -1,3 +1,9 @@
+/ImageOutput
+/model_result
+/Pose-dataset
+/Dataset-pose-split
+/csv_train_test
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
