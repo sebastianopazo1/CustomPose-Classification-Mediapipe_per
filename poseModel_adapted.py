@@ -13,9 +13,7 @@ from keras.regularizers import l2
 from keras.callbacks import ReduceLROnPlateau
 
 def create_model(input_shape, num_classes, dropout_rate=0.3):
-    """
-    Función para crear un modelo más robusto con arquitectura mejorada
-    """
+    
     model = Sequential([
         # Capa de entrada con normalización
         layers.BatchNormalization(input_shape=input_shape),
@@ -76,6 +74,10 @@ def main():
     x_train = scaler.fit_transform(x_train)
     x_test = scaler.transform(x_test)
     
+    scaler_filename = os.path.splitext(args["save"])[0] + '_scaler.pkl'
+    joblib.dump(scaler, scaler_filename)
+    print(f'[INFO] Scaler saved as {scaler_filename}')
+
     # Codificación de etiquetas
     y_train_encoded, class_mapping = y_train.factorize()
     y_test_encoded = pd.Categorical(y_test, categories=class_mapping).codes
